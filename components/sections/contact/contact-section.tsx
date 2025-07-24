@@ -6,19 +6,19 @@ export default function ContactSection() {
     {
       title: "Email",
       value: "lucassilvadossantos2005@gmail.com",
-      link: "mailto:lucassilvadossantos2005@gmail.com",
+      link: "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMVJJwMZwNNwKjpqNGjVgQPcgHSnQwRhDBbGfvhWNDMTdddrMQBxBLmLHFqPSSHNwVBltMQ",
       icon: Mail,
     },
     {
       title: "Telefone",
       value: "(35) 9 8886-2172",
-      link: "tel:+5535988862172",
+      link: "http://wa.me/5535988862172",
       icon: Phone,
     },
     {
       title: "LinkedIn",
       value: "Lucas Silva",
-      link: "https://linkedin.com/in/lucas-silva-dos-santos",
+      link: "https://www.linkedin.com/in/lucas-silva-dos-santos-31026726a/",
       icon: Linkedin,
     },
     {

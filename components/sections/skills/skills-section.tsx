@@ -5,9 +5,9 @@ export default function SkillsSection() {
   const skills = [
     { name: "Front-end", description: "HTML, CSS, JavaScript", icon: Code },
     { name: "Back-end", description: "PHP, Java, Node.js", icon: Code },
-    { name: "Design Gráfico", description: "Photoshop, Identidade Visual", icon: Palette },
-    { name: "Videomaker", description: "Premiere, After Effects", icon: Video },
-    { name: "Fotógrafo", description: "Edição e Tratamento", icon: Camera },
+    { name: "Design Gráfico", description: "Photoshop, Illustrator e Canva", icon: Palette },
+    { name: "Videomaker", description: "Premiere, Sony Vegas e After Effects", icon: Video },
+    { name: "Fotógrafo", description: "Edição e Tratamento de Pele", icon: Camera },
     { name: "Técnico em TI", description: "Suporte e Manutenção", icon: Settings },
   ]
 

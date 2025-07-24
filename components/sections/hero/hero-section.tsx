@@ -51,7 +51,7 @@ export default function HeroSection() {
           >
             @lucartes.design
           </a>
-          , onde produzo artes visuais para atletas e projetos esportivos. Atualmente, concilio minha atuação no design
+          , onde produzo artes visuais e projetos esportivos. Atualmente, concilio minha atuação no design
           com a formação em Ciência da Computação, contribuindo em projetos digitais que exigem visão estética,
           conhecimento técnico e inovação constante.
         </p>

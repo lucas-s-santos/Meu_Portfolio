@@ -22,9 +22,9 @@ export default function PortfolioSection() {
     },
     {
       id: 4,
-      title: "Arte Vital Aço - ARTE DE APRESENTAÇÃO",
-      category: "Arte Empresarial",
-      imageUrl: "https://i.postimg.cc/tTBHzRkd/vital-Post.jpg",
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/WpDkJdX7/11-07-Gabriel.jpg",
     },
     {
       id: 5,
@@ -36,7 +36,79 @@ export default function PortfolioSection() {
       id: 6,
       title: "Arte Connect Sports - ARTE JOGADOR",
       category: "Dia de Jogo",
-      imageUrl: "https://i.postimg.cc/WpD27gRh/28-06-Gabriel.jpg",
+      imageUrl: "https://i.postimg.cc/GtsdhwPk/31-05-gabriel.jpg",
+    },
+    {
+      id: 7,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/LsNHxV6Z/gabriel-23-05.jpg",
+    },
+    {
+      id: 8,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/52p0rJs0/12-07guilherme.jpg",
+    },
+    {
+      id: 9,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/kgC6Zf9j/05-07-Guilherme.jpg",
+    },
+    {
+      id: 10,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/J46vYdb8/10-05-guilherme.jpg",
+    },
+    {
+      id: 11,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/jS9V2k5c/guilherme26-04.jpg",
+    },
+    {
+      id: 12,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/tT4FcDd0/19-07-Leo-Maia.jpg",
+    },
+    {
+      id: 13,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/KzTQf0mZ/28-06leo-Maia.jpg",
+    },
+    {
+      id: 14,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/6qYZfZ4W/31-leo-maia.jpg",
+    },
+    {
+      id: 15,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/dV7CGLsF/10-07-Matheus.jpg",
+    },
+    {
+      id: 16,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/FK5YcpCb/03-07-Matheus.jpg",
+    },
+    {
+      id: 17,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/7L3fNzjF/16-17-18do06-Matheus2.jpg",
+    },
+    {
+      id: 18,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/7hfHjJQY/Contrato-de-forma-o.jpg",
     },
   ]
 
@@ -46,7 +118,7 @@ export default function PortfolioSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Artes e Identidade Visual</h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Portfólio de design esportivo e criação visual para atletas e projetos
+          Veja algumas das minhas criações visuais, onde cada detalhe é pensado para transmitir identidade, estilo e propósito em projetos únicos!
           </p>
         </div>
 

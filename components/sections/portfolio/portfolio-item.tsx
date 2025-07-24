@@ -51,7 +51,7 @@ export default function PortfolioItem({ id, title, category, imageUrl }: Portfol
             className="w-full rounded-full border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 dark:border-green-800 dark:text-green-400 dark:hover:bg-green-900/20 bg-transparent transition-all duration-200"
           >
             <Eye className="w-4 h-4 mr-2" />
-            Ver mais
+            Ver Imagem
           </Button>
         </CardContent>
       </Card>
