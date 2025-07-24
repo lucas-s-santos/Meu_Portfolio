@@ -2,12 +2,42 @@ import PortfolioItem from "./portfolio-item"
 
 export default function PortfolioSection() {
   const portfolioItems = [
-    { id: 1, title: "Arte Esportiva - Futebol", category: "Design Esportivo" },
-    { id: 2, title: "Identidade Visual - Atleta", category: "Branding" },
-    { id: 3, title: "Arte para Redes Sociais", category: "Social Media" },
-    { id: 4, title: "Design de Apresentação", category: "Design Gráfico" },
-    { id: 5, title: "Arte Promocional", category: "Marketing" },
-    { id: 6, title: "Logo e Identidade", category: "Branding" },
+    {
+      id: 1,
+      title: "Logo Lucarts.Designer - LOGO",
+      category: "Logo Empresarial",
+      imageUrl: "https://i.postimg.cc/QC8qkhC3/Logo-Design-Textura.jpg",
+    },
+    {
+      id: 2,
+      title: "Logo CalmDev - LOGO",
+      category: "Logo Empresarial",
+      imageUrl: "https://i.postimg.cc/wB9cd95s/Logo-Calm-Dev-2.jpg",
+    },
+    {
+      id: 3,
+      title: "Cartão TG FLASH - CARTÃO DE VISITA",
+      category: "Cartão de Visita Empresarial",
+      imageUrl: "https://i.postimg.cc/tJg90nJm/CARTAO-DE-VISITA.jpg",
+    },
+    {
+      id: 4,
+      title: "Arte Vital Aço - ARTE DE APRESENTAÇÃO",
+      category: "Arte Empresarial",
+      imageUrl: "https://i.postimg.cc/tTBHzRkd/vital-Post.jpg",
+    },
+    {
+      id: 5,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/WpD27gRh/28-06-Gabriel.jpg",
+    },
+    {
+      id: 6,
+      title: "Arte Connect Sports - ARTE JOGADOR",
+      category: "Dia de Jogo",
+      imageUrl: "https://i.postimg.cc/WpD27gRh/28-06-Gabriel.jpg",
+    },
   ]
 
   return (
@@ -19,6 +49,8 @@ export default function PortfolioSection() {
             Portfólio de design esportivo e criação visual para atletas e projetos
           </p>
         </div>
+
+        {/* Mapeia os itens e usa a imagem específica de cada um */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItems.map((item) => (
             <PortfolioItem
@@ -26,8 +58,7 @@ export default function PortfolioSection() {
               id={item.id}
               title={item.title}
               category={item.category}
-              // Você pode adicionar imagens aqui:
-              // imageUrl="/caminho/para/sua/imagem.jpg"
+              imageUrl={item.imageUrl}  // <- aqui pega a imagem correta
             />
           ))}
         </div>

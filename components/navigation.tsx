@@ -54,7 +54,7 @@ export default function Navigation({ activeSection, onSectionChange, darkMode, o
             {/* Logo com foto */}
             <div className="flex-shrink-0 flex items-center space-x-3">
               <img
-                src="https://i.postimg.cc/HL6xxp25/image.png"
+                src="https://i.postimg.cc/QMPLyY5w/Logo-Design-FB.jpg"
                 alt="Lucas Silva dos Santos"
                 className="w-10 h-10 rounded-full object-cover border-2 border-green-500/20"
               />

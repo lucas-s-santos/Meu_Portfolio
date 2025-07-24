@@ -22,14 +22,14 @@ export default function ResumeSection() {
               <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-md">
                 Documento completo com experiência profissional, formação acadêmica e habilidades técnicas
               </p>
-              <Button
-                size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
-                onClick={() => window.open("/mnt/data/currículo-lucas.pdf", "_blank")}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Baixar Currículo
-              </Button>
+              <a 
+                  href="https://drive.google.com/file/d/1lkPFhaX-HrBP4pdBv8vtFkZ9O8yMv0Dl/view?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 bg-[#225a42] hover:bg-[#44cf7a] text-white rounded-full transition-all duration-300 shadow-md"
+                >
+                  <Download className="mr-2 h-5 w-5" /> Baixar Currículo
+                </a>
             </CardContent>
           </Card>
         </div>
