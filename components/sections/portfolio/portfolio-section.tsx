@@ -22,27 +22,27 @@ export default function PortfolioSection() {
     },
     {
       id: 4,
-      title: "Arte Connect Sports - ARTE JOGADOR",
-      category: "Dia de Jogo",
-      imageUrl: "/artes/11-07Gabriel.jpg",
+      title: "Felipe Moreira - PODCAST",
+      category: "Convidado PodCast",
+      imageUrl: "/artes/26-05-felipe.jpg",
     },
     {
       id: 5,
       title: "Arte Connect Sports - ARTE JOGADOR",
       category: "Dia de Jogo",
-      imageUrl: "/artes/28-06Gabriel.jpg",
+      imageUrl: "/artes/11-07Gabriel.jpg",
     },
     {
       id: 6,
       title: "Arte Connect Sports - ARTE JOGADOR",
       category: "Dia de Jogo",
-      imageUrl: "/artes/31-05-Gabriel.jpg",
+      imageUrl: "/artes/28-06Gabriel.jpg",
     },
     {
       id: 7,
       title: "Arte Connect Sports - ARTE JOGADOR",
       category: "Dia de Jogo",
-      imageUrl: "/artes/gabriel-23-05.jpg",
+      imageUrl: "/artes/31-05-Gabriel.jpg",
     },
     {
       id: 8,
