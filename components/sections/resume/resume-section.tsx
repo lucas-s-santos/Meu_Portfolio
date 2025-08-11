@@ -23,7 +23,7 @@ export default function ResumeSection() {
                 Documento completo com experiência profissional, formação acadêmica e habilidades técnicas
               </p>
               <a 
-                  href="https://drive.google.com/file/d/1lkPFhaX-HrBP4pdBv8vtFkZ9O8yMv0Dl/view?usp=sharing" 
+                  href="https://drive.google.com/file/d/1Epav02CDg2gsWuYAzlZs6i20uNjpqEIv/view?usp=sharing" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-[#225a42] hover:bg-[#44cf7a] text-white rounded-full transition-all duration-300 shadow-md"
