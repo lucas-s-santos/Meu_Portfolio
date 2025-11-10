@@ -1,21 +1,10 @@
+// src/components/sections/skills/skills-section.tsx
 "use client"
 
 import { motion } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Lista de importações SEGURA E FUNCIONAL com os novos ícones
-import { 
-  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaVuejs, FaPhp, FaJava, FaGitAlt, FaGithub, FaFigma, FaDatabase, FaCode 
-} from "react-icons/fa"
-import { 
-  SiTypescript, SiNextdotjs, SiTailwindcss, SiAdobephotoshop, SiAdobepremierepro, SiSupabase, SiMysql,
-  // ÍCONES NOVOS ADICIONADOS
-  SiAdobeaftereffects,
-  SiSonyvegas
-} from "react-icons/si"
-
-// SEU COMPONENTE DE ÍCONE ORIGINAL (FUNCIONANDO)
-const TechIcon = ({ icon, name, color }) => (
+const TechIcon = ({ src, name, color, darkSrc }: { src: string; name: string; color: string; darkSrc?: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -23,10 +12,24 @@ const TechIcon = ({ icon, name, color }) => (
     className="group relative flex flex-col items-center justify-center p-4"
   >
     <div 
-      className="text-5xl text-muted-foreground transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 group-hover:text-[var(--hover-color)]"
-      style={{ '--hover-color': color } as React.CSSProperties}
+      className="w-16 h-16 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center"
     >
-      {icon}
+      {/* Versão Light (SVG) - sempre mostra, exceto se houver darkSrc no dark */}
+      <img
+        src={src}
+        alt={name}
+        className={`w-full h-full object-contain ${darkSrc ? 'dark:hidden' : ''}`}
+        loading="lazy"
+      />
+      {/* Versão Dark (PNG) - só mostra se tiver darkSrc */}
+      {darkSrc && (
+        <img
+          src={darkSrc}
+          alt={name}
+          className="w-full h-full object-contain hidden dark:block"
+          loading="lazy"
+        />
+      )}
     </div>
     <span className="absolute bottom-[-2.5rem] text-sm font-medium text-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
       {name}
@@ -35,45 +38,43 @@ const TechIcon = ({ icon, name, color }) => (
 );
 
 export default function SkillsSection() {
-  // Lista de tecnologias com ícones substitutos e seguros
+  // --- LISTA CORRIGIDA COM OS NOMES EXATOS E A EXTENSÃO DUPLA '.svg.svg' ---
   const technologies = {
     frontend: [
-      { icon: <FaHtml5 />, name: "HTML5", color: "#E34F26" },
-      { icon: <FaCss3Alt />, name: "CSS3", color: "#1572B6" },
-      { icon: <FaJsSquare />, name: "JavaScript", color: "#F7DF1E" },
-      { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
-      { icon: <FaReact />, name: "React.js", color: "#61DAFB" },
-      { icon: <SiNextdotjs />, name: "Next.js", color: "#000000" },
-      { icon: <FaVuejs />, name: "Vue.js", color: "#4FC08D" },
-      { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "#06B6D4" },
+      { src: "/icons/html.svg.svg", name: "HTML5", color: "#E34F26" },
+      { src: "/icons/css.svg.svg", name: "CSS3", color: "#1572B6" },
+      { src: "/icons/javascript.svg.svg", name: "JavaScript", color: "#F7DF1E" },
+      { src: "/icons/typescript.svg.svg", name: "TypeScript", color: "#3178C6" },
+      { src: "/icons/react.svg.svg", name: "React.js", color: "#61DAFB" },
+      { src: "/icons/nextjs.svg.svg", name: "Next.js", color: "#000000", darkSrc: "/icons/nextjsbranco.svg" },
+      { src: "/icons/vuejs.svg.svg", name: "Vue.js", color: "#4FC08D" },
+      { src: "/icons/tailwindcss.svg.svg", name: "Tailwind CSS", color: "#06B6D4" },
     ],
     backend: [
-      { icon: <FaNodeJs />, name: "Node.js", color: "#339933" },
-      { icon: <FaJava />, name: "Java", color: "#007396" },
-      { icon: <FaPhp />, name: "PHP", color: "#777BB4" },
-      { icon: <FaCode />, name: "C#", color: "#512BD4" },
-      { icon: <FaCode />, name: "C++", color: "#00599C" },
+      { src: "/icons/Node.js.svg", name: "Node.js", color: "#339933" },
+      { src: "/icons/Java.svg", name: "Java", color: "#007396" },
+      { src: "/icons/PHP.svg", name: "PHP", color: "#777BB4" },
+      { src: "/icons/c-sharp.svg.svg", name: "C#", color: "#512BD4" },
+      { src: "/icons/c-plus-plus.svg.svg", name: "C++", color: "#00599C" },
     ],
     databases: [
-      { icon: <SiSupabase />, name: "Supabase", color: "#3ECF8E" },
-      { icon: <SiMysql />, name: "MySQL", color: "#4479A1" },
-      { icon: <FaDatabase />, name: "SQL Server", color: "#CC2927" },
-      { icon: <FaDatabase />, name: "SQL", color: "#888888" },
-      { icon: <FaDatabase />, name: "Neo4j", color: "#008CC1" },
+      { src: "/icons/supabase.svg.svg", name: "Supabase", color: "#3ECF8E" },
+      { src: "/icons/mysql.svg.svg", name: "MySQL", color: "#4479A1" },
+      { src: "/icons/sql-server.svg.svg", name: "SQL Server", color: "#CC2927" },
+      { src: "/icons/neo4j.svg.svg", name: "Neo4j", color: "#008CC1" },
     ],
     toolsAndDesign: [
-      { icon: <FaGitAlt />, name: "Git", color: "#F05032" },
-      { icon: <FaGithub />, name: "GitHub", color: "#181717" },
-      { icon: <FaFigma />, name: "Figma", color: "#F24E1E" },
-      { icon: <SiAdobephotoshop />, name: "Photoshop", color: "#31A8FF" },
-      { icon: <SiAdobepremierepro />, name: "Premiere Pro", color: "#9999FF" },
-      // FERRAMENTAS ADICIONADAS
-      { icon: <SiAdobeaftereffects />, name: "After Effects", color: "#9999FF" },
-      //{ icon: <SiSonyvegas />, name: "Sony Vegas", color: "#BCB0B3" },
+      { src: "/icons/Git.svg", name: "Git", color: "#F05032" },
+      { src: "/icons/GitHub.svg", name: "GitHub", color: "#181717", darkSrc: "/icons/Githubbranco.png" },
+      { src: "/icons/Figma.svg", name: "Figma", color: "#F24E1E" },
+      { src: "/icons/photoshop.svg.svg", name: "Photoshop", color: "#31A8FF" },
+      { src: "/icons/premiere.svg.svg", name: "Premiere Pro", color: "#9999FF" },
+      { src: "/icons/After Effects.svg", name: "After Effects", color: "#9999FF" },
     ]
   };
 
   return (
+    // O resto do seu componente continua exatamente igual.
     <section id="habilidades" className="py-24">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div 
