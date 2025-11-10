@@ -1,37 +1,30 @@
+// src/app/page.tsx
 "use client"
 
 import { useState, useEffect } from "react"
 import Navigation from "@/components/navigation"
 import HeroSection from "@/components/sections/hero/hero-section"
+import AboutSection from "@/components/sections/about/about-section"
 import SkillsSection from "@/components/sections/skills/skills-section"
-import PortfolioSection from "@/components/sections/portfolio/portfolio-section"
-import ResumeSection from "@/components/sections/resume/resume-section"
+import DevProjectsSection from "@/components/sections/dev-projects/dev-projects-section"
+import ArtsSection from "@/components/sections/portfolio/portfolio-section"
 import ContactSection from "@/components/sections/contact/contact-section"
 import FooterSection from "@/components/sections/footer/footer-section"
 
-export default function Portfolio() {
-  const [darkMode, setDarkMode] = useState(false)
+export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("inicio")
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme === "dark") {
-      setDarkMode(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
-
-  useEffect(() => {
     const handleScroll = () => {
-      const sections = ["inicio", "habilidades", "portfolio", "curriculo", "contato"]
-      const scrollPosition = window.scrollY + 100
+      const sections = ["inicio", "sobre", "habilidades", "projetos", "artes", "contato"]
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
         if (element) {
           const { offsetTop, offsetHeight } = element
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
+            setActiveSection(sectionId)
             break
           }
         }
@@ -42,34 +35,25 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode)
-    if (!darkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }
-
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "dark" : ""}`}>
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-        <Navigation
-          activeSection={activeSection}
-          onSectionChange={setActiveSection}
-          darkMode={darkMode}
-          onThemeToggle={toggleTheme}
-        />
+    // DIV PRINCIPAL CORRIGIDO: Sem classes de fundo.
+    // A cor do texto é herdada do body, e o fundo (com a malha) é controlado pelo layout.tsx.
+    <div>
+      <Navigation
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
 
+      <main>
         <HeroSection />
+        <AboutSection />
         <SkillsSection />
-        <PortfolioSection />
-        <ResumeSection />
+        <DevProjectsSection />
+        <ArtsSection />
         <ContactSection />
-        <FooterSection />
-      </div>
+      </main>
+      
+      <FooterSection />
     </div>
   )
 }

@@ -1,19 +1,23 @@
+// src/components/navigation.tsx
 "use client"
 
 import { useState, useEffect } from "react"
-import { Home, Code, Briefcase, Download, Mail, Menu, X, Sun, Moon } from "lucide-react"
+import { useTheme } from "next-themes" // <-- IMPORTANTE: Importando o hook correto
+import { Home, User, Code, Briefcase, Palette, Mail, Menu, X, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
+// As props de tema foram removidas, pois o hook 'useTheme' cuida de tudo.
 interface NavigationProps {
   activeSection: string
   onSectionChange: (section: string) => void
-  darkMode: boolean
-  onThemeToggle: () => void
 }
 
-export default function Navigation({ activeSection, onSectionChange, darkMode, onThemeToggle }: NavigationProps) {
+export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // 'theme' e 'setTheme' agora vêm diretamente do provedor global 'next-themes'
+  const { theme, setTheme } = useTheme() 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,11 +27,13 @@ export default function Navigation({ activeSection, onSectionChange, darkMode, o
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Lista de itens do menu ATUALIZADA com os IDs corretos
   const menuItems = [
     { id: "inicio", label: "Início", icon: Home },
+    { id: "sobre", label: "Sobre", icon: User },
     { id: "habilidades", label: "Habilidades", icon: Code },
-    { id: "portfolio", label: "Portfólio", icon: Briefcase },
-    { id: "curriculo", label: "Currículo", icon: Download },
+    { id: "projetos", label: "Projetos", icon: Briefcase },
+    { id: "artes", label: "Artes", icon: Palette },
     { id: "contato", label: "Contato", icon: Mail },
   ]
 
@@ -40,113 +46,72 @@ export default function Navigation({ activeSection, onSectionChange, darkMode, o
     setIsMobileMenuOpen(false)
   }
 
+  // Função que alterna o tema usando o 'setTheme' do hook
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
   return (
-    <>
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50"
-            : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo com foto */}
-            <div className="flex-shrink-0 flex items-center space-x-3">
-              <img
-                src="/LogoDesignFB.JPG"
-                alt="Lucas Silva dos Santos"
-                className="w-10 h-10 rounded-full object-cover border-2 border-green-500/20"
-              />
-            </div>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo na Esquerda */}
+            <a href="#inicio" onClick={() => scrollToSection('inicio')} className="flex items-center space-x-3 group">
+              <img src="/LogoDesignFB.JPG" alt="Logo" className="w-8 h-8 rounded-full transition-transform group-hover:scale-110" />
+              
+            </a>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-1">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`group relative flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    activeSection === item.id
-                      ? "text-green-600 dark:text-green-400"
-                      : "text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400"
-                  }`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-
-                  {/* Active indicator */}
-                  {activeSection === item.id && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-green-600 dark:bg-green-400 rounded-full" />
-                  )}
-
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 rounded-full bg-green-50 dark:bg-green-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10" />
-                </button>
-              ))}
-            </div>
-
-            {/* Theme Toggle & Mobile Menu Button */}
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onThemeToggle}
-                className="w-9 h-9 rounded-full hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
-              >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </Button>
-
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden w-9 h-9 rounded-full hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-          }`}
-        >
-          <div className="px-4 pt-2 pb-4 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50">
+          <div className="hidden md:flex items-center space-x-1">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
-                  activeSection === item.id
-                    ? "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
-                    : "text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20"
-                }`}
+                className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeSection === item.id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
               >
-                <item.icon className="w-5 h-5" />
-                <span className="font-medium">{item.label}</span>
-
-                {/* Active indicator for mobile */}
+                {item.label}
                 {activeSection === item.id && (
-                  <div className="ml-auto w-2 h-2 bg-green-600 dark:bg-green-400 rounded-full" />
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                    layoutId="underline"
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
                 )}
               </button>
             ))}
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile menu overlay */}
+          <div className="flex items-center space-x-2">
+            {/* O botão de tema agora funciona corretamente */}
+            <Button variant="ghost" size="icon" onClick={toggleTheme}>
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+            <div className="md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Menu mobile */}
       {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 dark:bg-black/40 z-40 md:hidden transition-opacity duration-300"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+        <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {menuItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${activeSection === item.id ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50'}`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
       )}
-    </>
+    </nav>
   )
 }

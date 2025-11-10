@@ -1,42 +1,34 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+// src/app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider"; // <-- Importação crucial
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lucas Silva dos Santos - Portfólio",
-  description:
-    "Programador e Designer Freelancer especializado em soluções criativas e funcionais. Estudante de Ciência da Computação.",
-  keywords:
-    "programador, designer, freelancer, ciência da computação, desenvolvimento web, design gráfico, videomaker, fotógrafo",
-  authors: [{ name: "Lucas Silva dos Santos" }],
-  openGraph: {
-    title: "Lucas Silva dos Santos - Portfólio",
-    description: "Programador e Designer Freelancer especializado em soluções criativas e funcionais.",
-    type: "website",
-  },
-    generator: 'v0.dev'
-}
+  title: "Lucas Silva | Desenvolvedor Web",
+  description: "Portfólio de Lucas Silva, desenvolvedor web júnior.",
+};
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={inter.variable}>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+        {/* O ThemeProvider deve envolver todo o seu conteúdo */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

@@ -1,19 +1,26 @@
-import { Mail, Phone, Linkedin, Instagram, Github } from "lucide-react"
+// src/components/sections/contact/contact-section.tsx
+"use client" // Adicionado para garantir compatibilidade com hooks e eventos
+
+// 1. Importações: Phone foi removido e FaWhatsapp foi adicionada
+import { Mail, Linkedin, Instagram, Github } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import ContactCard from "./contact-card"
 
 export default function ContactSection() {
   const contactItems = [
     {
       title: "Email",
-      value: "lucassilvadossantos2005@gmail.com",
+      value: "lucassilvadosantos2005@gmail.com",
       link: "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMVJJwMZwNNwKjpqNGjVgQPcgHSnQwRhDBbGfvhWNDMTdddrMQBxBLmLHFqPSSHNwVBltMQ",
       icon: Mail,
     },
     {
-      title: "Telefone",
-      value: "(35) 9 8886-2172",
+      // 2. O título foi atualizado para refletir o novo ícone
+      title: "WhatsApp",
+      value: "(35 ) 9 8886-2172",
       link: "http://wa.me/5535988862172",
-      icon: Phone,
+      // 3. O ícone foi trocado de 'Phone' para 'FaWhatsapp'
+      icon: FaWhatsapp,
     },
     {
       title: "LinkedIn",
@@ -45,7 +52,7 @@ export default function ContactSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {contactItems.map((item, index) => (
+          {contactItems.map((item, index ) => (
             <ContactCard key={index} title={item.title} value={item.value} link={item.link} icon={item.icon} />
           ))}
         </div>
