@@ -109,7 +109,7 @@ export default function AboutSection() {
                   <p>
                     Minha jornada como freelancer em design e edição de vídeo me deu uma perspectiva única sobre a importância da identidade visual. Agora, busco canalizar essa visão e meu conhecimento técnico para conseguir minha primeira oportunidade como <strong>DESENVOLVEDOR JÚNIOR</strong>, contribuindo para projetos inovadores e crescendo junto a uma equipe talentosa.
                   </p>
-                  <a href="/curriculo-lucas.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="https://drive.google.com/file/d/1Epav02CDg2gsWuYAzlZs6i20uNjpqEIv/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                     <Button className="mt-6">
                       <Download className="mr-2 h-4 w-4" />
                       Baixar Currículo

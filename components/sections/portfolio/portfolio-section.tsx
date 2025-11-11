@@ -1,5 +1,8 @@
+"use client"
+
 // Arquivo da sua seção de ARTES (ex: src/components/sections/portfolio/portfolio-section.tsx)
 
+import React, { useEffect, useRef, useState } from "react";
 import PortfolioItem from "./portfolio-item"
 
 export default function ArtsSection() { // Renomeei a função para clareza
@@ -22,7 +25,59 @@ export default function ArtsSection() { // Renomeei a função para clareza
     { id: 15, title: "Apresentação CalmDev", category: "Social Mídia CalmDev", imageUrl: "/artes/conheca-a-calmdev.jpg" },
   ]
 
-  return (
+    // Refs e estado para o carrossel em loop
+    const carouselRef = useRef<HTMLDivElement | null>(null)
+    const innerRef = useRef<HTMLDivElement | null>(null)
+    const rafRef = useRef<number | null>(null)
+    const [paused, setPaused] = useState(false)
+    const resumeTimeoutRef = useRef<number | null>(null)
+  const cardWidthRef = useRef<number>(320) // largura do card em px
+
+    // não usamos innerHTML para clonar (quebrava eventos React). Vamos renderizar os itens duas vezes em JSX.
+
+    // Handle arrow: move um card para a direção e pausa o auto-scroll por curto período
+    const handleArrowClick = (direction: number) => {
+      const carousel = carouselRef.current
+      if (!carousel) return
+      setPaused(true)
+      // scroll por 1 card
+      const dist = cardWidthRef.current * direction
+      carousel.scrollBy({ left: dist, behavior: 'smooth' })
+      // resume após 1s
+      if (resumeTimeoutRef.current) window.clearTimeout(resumeTimeoutRef.current)
+      resumeTimeoutRef.current = window.setTimeout(() => setPaused(false), 1000)
+    }
+
+    // Auto-scroll contínuo em loop usando requestAnimationFrame
+    useEffect(() => {
+      const carousel = carouselRef.current
+      const inner = innerRef.current
+      if (!carousel || !inner) return
+
+      const originalWidth = inner.scrollWidth / 2
+      const speed = 1.2 // px por frame, ajuste aqui para velocidade
+
+      const step = () => {
+        if (!carousel) return
+        if (!paused) {
+          carousel.scrollLeft += speed
+          if (carousel.scrollLeft >= originalWidth) {
+            // reset para o início do loop
+            carousel.scrollLeft -= originalWidth
+          }
+        }
+        rafRef.current = requestAnimationFrame(step)
+      }
+
+      rafRef.current = requestAnimationFrame(step)
+
+      return () => {
+        if (rafRef.current) cancelAnimationFrame(rafRef.current)
+        if (resumeTimeoutRef.current) window.clearTimeout(resumeTimeoutRef.current)
+      }
+    }, [paused])
+
+    return (
     // ID modificado para não conflitar
     <section id="artes" className="py-20 bg-card">
       {/* Largura aumentada para caber mais colunas */}
@@ -34,18 +89,61 @@ export default function ArtsSection() { // Renomeei a função para clareza
             Além do código, também tenho experiência em design gráfico e identidade visual.
           </p>
         </div>
+      </div>
 
-        {/* GRADE MODIFICADA: Mais colunas e menos espaçamento */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {portfolioItems.map((item) => (
-            <PortfolioItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              category={item.category}
-              imageUrl={item.imageUrl}
-            />
-          ))}
+      {/* Carrossel full-bleed: ocupa toda a largura da página */}
+      <div className="w-full">
+        <div className="relative max-w-full">
+          <button
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 rounded-full shadow p-2 hover:bg-white"
+            onClick={() => handleArrowClick(-1)}
+            aria-label="Voltar"
+            type="button"
+          >
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          </button>
+
+          <div
+            ref={carouselRef}
+            id="carousel-artes"
+            className="flex overflow-x-hidden gap-4 pb-4 w-full"
+            style={{ scrollSnapType: 'none', alignItems: 'start' }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div ref={innerRef} className="flex gap-4 pl-6 pr-6">
+              {portfolioItems.map((item) => (
+                <div key={"orig-" + item.id} style={{ scrollSnapAlign: 'start', minWidth: '320px', maxWidth: '320px' }}>
+                  <PortfolioItem
+                    id={item.id}
+                    title={item.title}
+                    category={item.category}
+                    imageUrl={item.imageUrl}
+                  />
+                </div>
+              ))}
+              {/* cópia para loop contínuo - mantém eventos React */}
+              {portfolioItems.map((item) => (
+                <div key={"copy-" + item.id} style={{ scrollSnapAlign: 'start', minWidth: '320px', maxWidth: '320px' }}>
+                  <PortfolioItem
+                    id={item.id}
+                    title={item.title}
+                    category={item.category}
+                    imageUrl={item.imageUrl}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 rounded-full shadow p-2 hover:bg-white"
+            onClick={() => handleArrowClick(1)}
+            aria-label="Avançar"
+            type="button"
+          >
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
         </div>
       </div>
     </section>

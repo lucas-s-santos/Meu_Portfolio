@@ -10,6 +10,7 @@ import DevProjectsSection from "@/components/sections/dev-projects/dev-projects-
 import ArtsSection from "@/components/sections/portfolio/portfolio-section"
 import ContactSection from "@/components/sections/contact/contact-section"
 import FooterSection from "@/components/sections/footer/footer-section"
+import ScrollToTop from "@/components/scroll-to-top"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("inicio")
@@ -54,6 +55,7 @@ export default function PortfolioPage() {
       </main>
       
       <FooterSection />
+      <ScrollToTop />
     </div>
   )
 }
