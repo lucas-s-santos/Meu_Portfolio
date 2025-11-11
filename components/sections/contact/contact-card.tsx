@@ -5,7 +5,7 @@ interface ContactCardProps {
   title: string
   value: string
   link: string
-  icon: LucideIcon
+  icon: LucideIcon | any
 }
 
 export default function ContactCard({ title, value, link, icon: Icon }: ContactCardProps) {

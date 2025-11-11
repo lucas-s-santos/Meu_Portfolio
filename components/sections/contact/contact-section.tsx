@@ -5,6 +5,7 @@
 import { Mail, Linkedin, Instagram, Github } from "lucide-react"
 import { FaWhatsapp } from "react-icons/fa"
 import ContactCard from "./contact-card"
+import ContactForm from "./contact-form"
 
 export default function ContactSection() {
   const contactItems = [
@@ -44,17 +45,30 @@ export default function ContactSection() {
 
   return (
     <section id="contato" className="py-20">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Contato</h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Entre em contato para projetos, colaborações ou oportunidades!
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {contactItems.map((item, index ) => (
-            <ContactCard key={index} title={item.title} value={item.value} link={item.link} icon={item.icon} />
-          ))}
+
+        {/* Grid com formulário e cards de contato */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Formulário à esquerda */}
+          <div className="lg:col-span-2">
+            <ContactForm />
+          </div>
+
+          {/* Cards de contato à direita */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Redes Sociais</h3>
+            <div className="space-y-3">
+              {contactItems.map((item, index) => (
+                <ContactCard key={index} title={item.title} value={item.value} link={item.link} icon={item.icon} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

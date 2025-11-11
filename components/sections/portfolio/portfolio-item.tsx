@@ -32,6 +32,7 @@ export default function PortfolioItem({ id, title, category, imageUrl }: Portfol
             <img
               src={imageUrl || "/placeholder.svg"}
               alt={title}
+              loading="lazy"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (

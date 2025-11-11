@@ -54,6 +54,7 @@ const InteractiveLogoDisplay = () => {
           <img 
             src="/logoLBranco.jpg" 
             alt="Logo"
+            loading="lazy"
             // O filtro 'invert(1)' torna a logo branca preta. 'dark:invert(0)' remove o filtro no modo escuro.
             className="w-full h-full object-contain invert dark:invert-0 transition-all duration-300"
           />
